@@ -1,0 +1,279 @@
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.42em;
+    color: #A7A1AE;
+	background-color: rgba(255, 255, 255, 0.5);
+
+}
+  
+.container {
+    background-color:#F7F7F2;
+    width: 100%;
+    height: 100vh; 
+    overflow: auto; 
+	background-image: url("studentlistbg.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+img{
+	float: right;
+	margin-right: .5%;
+	margin-top: 2%;
+}
+
+.container-title h3 {
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 55px;
+    color: #781B1B;
+	font-weight: bolder;
+}
+
+.button-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.btn{
+	color:white;
+	float: right;
+	padding:10px;
+	background-color: #781B1B;
+	border: none;
+}
+
+.btn:hover {
+    background-color: #4D4D4D; 
+	border: none;
+}
+.w3-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+table {
+    border-collapse: separate;
+    background: #4D4D4D;
+    border-radius: 5px;
+    margin: 0 auto; 
+    width: 75%; 
+    height: 50vh;
+	max-width: 100%; 
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+	margin-top: 5px;
+	margin-bottom: 80px;
+}
+
+.table-container th {
+    font-family: 'Patua One';
+    font-size: 16px;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+    text-align: left;
+    padding: 7px; 
+	background-color:#781B1B;
+	border-top: 5px solid #EBBB1F;
+    border-bottom: 5px solid #EBBB1F;
+	text-align:center;
+	font-weight: bolder;
+	font-size: 20px;
+}
+
+tbody tr td {
+    font-weight: 400;
+    color: white;
+    font-size: 14px;
+    padding: 12px;
+    border-bottom: 1px solid #A17C66;
+	text-align: center;
+}
+
+tbody tr:nth-child(2n) {
+    background: #3C3C3C;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+tbody:hover > tr td {
+    opacity: 0.5;
+}
+
+tbody:hover > tr:hover td {
+    text-shadow: none;
+    color: white;
+	font-weight:bold;
+    opacity: 1.0;
+}
+
+.edit-btn,
+.dlte-btn {
+    display: inline-block;
+    padding: 0px; 
+    margin-left: 2px; 
+    font-size: 25px;
+	color: black;
+}
+
+.edit-btn{
+	background-color: #EBBB1F;
+}
+
+.dlte-btn{
+	background-color: #AB0E0F;
+}
+
+.w3-modal-content {
+    border: 1px solid #888;
+    width: 10%; 
+    max-width: 500px; 
+    height: 70%;
+	overflow:auto;
+}
+
+.w3-modal-content input[type="text"]{
+	font-size: 19px;
+}
+
+.w3-modal-content input[type="text"],
+.w3-modal-content label {
+    font-size: 12px; 
+    padding: 6px; 
+	margin-top: 7px;
+	margin-bottom: 7px;
+	text-align: left;
+	display: block;
+	color:black;
+}
+.w3-modal-content input[type="submit"] {
+	margin-top: 10px;
+    font-size: 20px; 
+    padding: 12px 20px; 
+}
+
+.w3-container{
+	margin-bottom: 10px;
+}
+
+.add-button{
+	margin-right: 12.6%;
+}
+
+.search {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 20px; 
+    margin-left: 20px; 
+}
+
+.search input[type="text"] {
+    padding: 9px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 201px;
+	font-size : 12px;
+	margin: 9px;
+}
+
+.btn-search{
+	padding: 6px;
+	width: 90px;
+	border-radius: 5px;
+	border: none;
+}
+
+.btn-search:hover{
+	border-width: 2px;
+}
+
+.btn-prev, .btn-next{
+	padding: 12px;
+	cursor: pointer;
+    font-size: 16px;
+	margin-bottom: 14px;
+	font-weight: bold;
+	border: none;
+	border-radius: 5px;
+}
+
+.button-prev {
+    position: absolute;
+    bottom: 20px;
+    right: 100px;
+}
+
+.btn-prev {
+    background-color: #EBBB1F;
+    color: black;
+	margin-right : 20px;
+}
+
+.btn-prev:hover {
+    background-color: #d2a326;
+}
+
+.button-next {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.button-add{
+	margin-right: 12.6%;
+}
+
+.btn-next {
+    background-color: #AB0E0F;
+    color: white;
+	margin-right : 14px;
+}
+
+.btn-next:hover {
+    background-color: #8c0c0f;
+}
+
+@media (max-width: 600px) {
+    .btn-prev,
+    .btn-next {
+        width: 20%;
+    }
+
+    .table-container {
+        width: 95%;
+    }

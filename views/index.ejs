@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/w3.css">
+	<link rel="icon" type="image/png" href="FAVI.png">
+    <title>Student List</title>
+</head>
+<body>
+	<div class="container"> 
+		<div class="container-title">
+			<h3>Student List</h3>
+		</div>
+		
+		<div class="search">
+			<form action="/search" method="post">
+				<input type="text" name="query" value="" placeholder="Search: ID NO or Lastname">
+				<button type="submit" class="btn-search">SEARCH</button>
+			</form>
+		</div>	
+
+		<div class="button-container"> 
+			<form action="/logout" method="get" onsubmit="return confirm('Are you sure you want to logout?')">
+				<button class="btn">LOGOUT</button><br><br>
+			</form>
+		</div>
+		
+		<div class="button-add"> 
+			<button class="btn" onclick="document.getElementById('studentmodal').style.display='block'">+ADD</button><br><br>
+		</div>
+		
+		<div class = "button-next">
+			<form action="/nextPage" method="get">
+				<button type="submit" class="btn-next">NEXT</button>
+			</form>
+		</div>
+			
+		<div class = "button-prev">
+			<form action="/prevPage" method="get">
+				<button type="submit" class="btn-prev">PREV</button>
+			</form>
+		</div>
+		
+		<table class="table-container">
+			<tr>
+				<th>ID NO</th>
+				<th>LASTNAME</th>
+				<th>FIRSTNAME</th>
+				<th>COURSE</th>
+				<th>LEVEL</th>
+				<th>ACTION</th>
+			</tr>
+			<% for(let i=0; i<studentlist.length; i++){ %>
+				<tr>
+					<td><%= studentlist[i].idno %></td>
+					<td><%= studentlist[i].lastname.toUpperCase() %></td>
+					<td><%= studentlist[i].firstname.toUpperCase() %></td>
+					<td><%= studentlist[i].course.toUpperCase() %></td>
+					<td><%= studentlist[i].level %></td>
+
+					<td>
+						<div class="edit-btn">
+							<button class="w3-button" onclick="toggleEditForm(<%= i %>)">&#9998;</button>
+						</div>
+						
+						<div class="w3-modal" id="editModal<%= i %>">
+							<div class="w3-modal-content w3-animate-zoom">
+								<div class="w3-container" style = "background-color: #481010;">
+									<h3 style= "text-align: left;">Edit Student</h3>
+									<span class="w3-button w3-display-topright" onclick="document.getElementById('editModal<%= i %>').style.display='none'">&times;</span>
+								</div>
+								<div class="w3-container">
+									<form method="post" action="/editstudent">
+										<input type="hidden" name="index" value="<%= i %>">
+										<p>
+											<label><b>ID NO:</b></label>
+											<input type="text" name="idno" value="<%= studentlist[i].idno %>" class="w3-input w3-border">
+										</p>
+										<p>
+											<label><b>Lastname:</b></label>
+											<input type="text" name="lastname" value="<%= studentlist[i].lastname %>" class="w3-input w3-border">
+										</p>
+										<p>
+											<label><b>Firstname:</b></label>
+											<input type="text" name="firstname" value="<%= studentlist[i].firstname %>" class="w3-input w3-border">
+										</p>
+										<p>
+											<label><b>Course:</b></label>
+											<input type="text" name="course" value="<%= studentlist[i].course %>" class="w3-input w3-border">
+										</p>
+										<p>
+											<label><b>Level:</b></label>
+											<input type="text" name="level" value="<%= studentlist[i].level %>" class="w3-input w3-border">
+										</p>
+										<button type="submit" class="w3-button w3-green align-right" style="float: right;">Save</button>
+									</form>
+								</div>
+							</div>
+						</div>
+
+						<div class="dlte-btn">
+							<a href="/deletestudent?idno=<%= studentlist[i].idno %>&index=<%= i %>" onclick="return confirm('Confirm Delete? ')">
+								<button class="w3-button">&times;</button>
+							</a>
+						</div>
+					</td>
+				</tr>
+			<% } %>
+		</table>
+
+		<div class="w3-modal" id="studentmodal">
+			<div class="w3-modal-content w3-animate-zoom">
+				<div class="w3-container" style = "background-color: #481010; color: white;">
+					<h3>Add Student</h3>
+					<span class="w3-button w3-display-topright" onclick="document.getElementById('studentmodal').style.display='none'">&times;</span>
+				</div>
+				<div class="w3-container">
+					<form method="post" action="/save">
+						<p>
+							<label><b>ID NO:</b></label>
+							<input type="text" name="idno" id="idno" class="w3-input w3-border">
+						</p>
+						<p>
+							<label><b>Lastname:</b></label>
+							<input type="text" name="lastname" id="lastname" class="w3-input w3-border">
+						</p>
+						<p>
+							<label><b>Firstname:</b></label>
+							<input type="text" name="firstname" id="firstname" class="w3-input w3-border">
+						</p>
+						<p>
+							<label><b>Course:</b></label>
+							<input type="text" name="course" id="course" class="w3-input w3-border">
+						</p>
+						<p>
+							<label><b>Level:</b></label>
+							<input type="text" name="level" id="level" class="w3-input w3-border">
+						</p>
+						<p>
+							<input type="submit" value="Save" class="w3-button w3-blue" style= "float: right;" >
+						</p>
+						<br><br>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+    <script>
+        function toggleEditForm(index) {
+            var modal = document.getElementById('editModal' + index);
+            if (modal.style.display === 'block') {
+                modal.style.display = 'none';
+            } else {
+                modal.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
