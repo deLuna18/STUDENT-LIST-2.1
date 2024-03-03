@@ -109,7 +109,6 @@ app.post("/search", (req, res) => {
     const results = studentlist.filter(student => {
         return student.idno.toLowerCase().includes(query) || student.lastname.toLowerCase().includes(query);
     });
-
     if (results.length > 0) {
         const totalPages = calculateTotalPages(results.length, display);
         const currentPage = 1;
@@ -120,12 +119,13 @@ app.post("/search", (req, res) => {
             currentPage,
         });
     } else {
-        res.send(`
-            <script>
-                alert("User does not exist!");
-                window.location.href = "/"; 
-            </script>
-        `);
+        const currentPage = 1;
+        const paginatedResults = paginate(studentlist, display, currentPage);
+        res.render("index.ejs", {
+            header,
+            studentlist: paginatedResults,
+            currentPage,
+        });
     }
 });
 
